@@ -11,7 +11,7 @@ env:
     env:
       BROWSER: ${BROWSER}
       URL: ${URL}
-- tapOn: "SR"
+- tapOn: "Switch language"
 - tapOn: "Menu"
 - extendedWaitUntil:
     visible: "Kontakt"
@@ -22,7 +22,7 @@ env:
 - extendedWaitUntil:
     visible: "Kopiraj imejl"
     timeout: 15000
-- tapOn: "EN"
+- tapOn: "Switch language"
 - extendedWaitUntil:
     visible: "Copy email"
     timeout: 10000

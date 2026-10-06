@@ -47,4 +47,4 @@ jobs:
           name: maestro-results
           path: |
             report.xml
-            ~/.maestro/tests/
+            /home/runner/.maestro/tests/

@@ -12,14 +12,17 @@ env:
       BROWSER: ${BROWSER}
       URL: ${URL}
 # On phones the hero headline sits below the photo and terminal card
-- scrollUntilVisible:
-    element: "I make software"
-    direction: DOWN
-    timeout: 20000
-- assertVisible: "reliable"
-- scrollUntilVisible:
-    element: "Download CV"
-    direction: DOWN
-    timeout: 20000
+- repeat:
+    while:
+      notVisible: "Download CV"
+    times: 5
+    commands:
+      - swipe:
+          start: 50%, 70%
+          end: 50%, 35%
+- extendedWaitUntil:
+    visible: "Download CV"
+    timeout: 10000
 - assertVisible: "Let's talk"
+- assertVisible: "reliable"
 - takeScreenshot: screenshots/01_home

@@ -35,3 +35,12 @@ appId: ${BROWSER}
 - extendedWaitUntil:
     visible: "Switch language"
     timeout: 30000
+# The site remembers the language in localStorage; always start in English
+- runFlow:
+    when:
+      visible: "O meni"
+    commands:
+      - tapOn: "Switch language"
+      - extendedWaitUntil:
+          visible: "About"
+          timeout: 10000
