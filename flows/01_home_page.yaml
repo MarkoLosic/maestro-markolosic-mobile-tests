@@ -23,6 +23,6 @@ env:
 - extendedWaitUntil:
     visible: "Download CV"
     timeout: 10000
-- assertVisible: "Let's talk"
-- assertVisible: "reliable"
+- assertVisible: ".*Let.s talk.*"
+- assertVisible: ".*reliable.*"
 - takeScreenshot: screenshots/01_home

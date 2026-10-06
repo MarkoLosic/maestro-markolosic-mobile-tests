@@ -38,7 +38,7 @@ jobs:
           target: google_apis_playstore
           arch: x86_64
           disable-animations: true
-          script: maestro test --format junit --output report.xml flows/
+          script: maestro test --format junit --output report.xml --debug-output maestro-debug --flatten-debug-output flows/
 
       - name: Upload results
         if: always()
@@ -47,4 +47,4 @@ jobs:
           name: maestro-results
           path: |
             report.xml
-            /home/runner/.maestro/tests/
+            maestro-debug/

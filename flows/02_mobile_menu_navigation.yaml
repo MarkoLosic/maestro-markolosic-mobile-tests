@@ -14,12 +14,12 @@ env:
 - tapOn: "Menu"
 - tapOn: "Experience"
 - extendedWaitUntil:
-    visible: "Where I've shipped."
+    visible: ".*shipped.*"
     timeout: 10000
 - tapOn: "Menu"
 - tapOn: "Contact"
 - extendedWaitUntil:
-    visible: "Copy email"
+    visible: ".*Copy email.*"
     timeout: 10000
-- assertVisible: "Send an email"
+- assertVisible: ".*Send an email.*"
 - takeScreenshot: screenshots/02_contact

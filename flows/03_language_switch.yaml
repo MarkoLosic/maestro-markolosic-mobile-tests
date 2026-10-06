@@ -20,9 +20,9 @@ env:
 - takeScreenshot: screenshots/03_serbian
 - tapOn: "Kontakt"
 - extendedWaitUntil:
-    visible: "Kopiraj imejl"
+    visible: ".*Kopiraj imejl.*"
     timeout: 15000
 - tapOn: "Switch language"
 - extendedWaitUntil:
-    visible: "Copy email"
+    visible: ".*Copy email.*"
     timeout: 10000

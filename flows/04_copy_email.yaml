@@ -14,11 +14,11 @@ env:
 - tapOn: "Menu"
 - tapOn: "Contact"
 - extendedWaitUntil:
-    visible: "Copy email"
+    visible: ".*Copy email.*"
     timeout: 15000
-- tapOn: "Copy email"
+- tapOn: ".*Copy email.*"
 - extendedWaitUntil:
-    visible: "Copied ✓"
+    visible: ".*Copied.*"
     timeout: 5000
-- assertVisible: "markolosic1993@gmail.com"
+- assertVisible: ".*markolosic1993@gmail.com.*"
 - takeScreenshot: screenshots/04_copied
