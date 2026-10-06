@@ -14,6 +14,7 @@ env:
 - tapOn: "Menu"
 - tapOn: "Blog"
 - extendedWaitUntil:
-    visible: ".*Maestro.*"
+    visible: "Notes from the test bench."
     timeout: 15000
+- assertVisible: "Filter by tag"
 - takeScreenshot: screenshots/05_blog

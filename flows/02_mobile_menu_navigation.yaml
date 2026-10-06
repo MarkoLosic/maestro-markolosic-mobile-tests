@@ -19,7 +19,7 @@ env:
 - tapOn: "Menu"
 - tapOn: "Contact"
 - extendedWaitUntil:
-    visible: ".*Copy email.*"
+    visible: "Have a product that needs to be rock-solid\\?"
     timeout: 10000
 - assertVisible: ".*Send an email.*"
 - takeScreenshot: screenshots/02_contact

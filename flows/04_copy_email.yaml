@@ -14,11 +14,18 @@ env:
 - tapOn: "Menu"
 - tapOn: "Contact"
 - extendedWaitUntil:
-    visible: ".*Copy email.*"
+    visible: "Have a product that needs to be rock-solid\\?"
     timeout: 15000
+- scrollUntilVisible:
+    element: ".*Copy email.*"
+    direction: DOWN
+    timeout: 20000
 - tapOn: ".*Copy email.*"
 - extendedWaitUntil:
     visible: ".*Copied.*"
     timeout: 5000
-- assertVisible: ".*markolosic1993@gmail.com.*"
+- scrollUntilVisible:
+    element: ".*markolosic1993@gmail.com.*"
+    direction: DOWN
+    timeout: 20000
 - takeScreenshot: screenshots/04_copied
