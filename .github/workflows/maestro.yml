@@ -40,11 +40,13 @@ jobs:
           disable-animations: true
           script: maestro test --format junit --output report.xml --debug-output maestro-debug --flatten-debug-output flows/
 
+      - name: Pack debug output
+        if: always()
+        run: tar czf maestro-debug.tgz maestro-debug report.xml || true
+
       - name: Upload results
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: maestro-results
-          path: |
-            report.xml
-            maestro-debug/
+          path: maestro-debug.tgz
