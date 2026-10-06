@@ -1,0 +1,19 @@
+appId: ${BROWSER}
+name: Blog page opens and lists posts
+tags:
+  - blog
+env:
+  BROWSER: ${BROWSER || 'com.android.chrome'}
+  URL: ${URL || 'https://markolosic.github.io'}
+---
+- runFlow:
+    file: subflows/open_site.yaml
+    env:
+      BROWSER: ${BROWSER}
+      URL: ${URL}
+- tapOn: "Menu"
+- tapOn: "Blog"
+- extendedWaitUntil:
+    visible: ".*Maestro.*"
+    timeout: 15000
+- takeScreenshot: screenshots/05_blog

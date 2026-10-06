@@ -1,0 +1,37 @@
+# Opens markolosic.github.io in the mobile browser
+# (Chrome on Android, Safari on iOS) and dismisses first-run dialogs.
+appId: ${BROWSER}
+---
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - launchApp:
+          clearState: true
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - launchApp:
+          stopApp: true
+# Chrome first-run screens (Android)
+- runFlow:
+    when:
+      visible: "Use without an account"
+    commands:
+      - tapOn: "Use without an account"
+- runFlow:
+    when:
+      visible: "No thanks"
+    commands:
+      - tapOn: "No thanks"
+- openLink: ${URL}
+# Safari "new menu" tip (iOS)
+- runFlow:
+    when:
+      visible: "dismiss pop-up"
+    commands:
+      - tapOn: "dismiss pop-up"
+- extendedWaitUntil:
+    visible: "Switch language"
+    timeout: 30000

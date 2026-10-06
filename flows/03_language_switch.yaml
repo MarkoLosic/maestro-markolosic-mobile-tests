@@ -1,0 +1,28 @@
+appId: ${BROWSER}
+name: Language switch EN -> SR -> EN
+tags:
+  - i18n
+env:
+  BROWSER: ${BROWSER || 'com.android.chrome'}
+  URL: ${URL || 'https://markolosic.github.io'}
+---
+- runFlow:
+    file: subflows/open_site.yaml
+    env:
+      BROWSER: ${BROWSER}
+      URL: ${URL}
+- tapOn: "SR"
+- tapOn: "Menu"
+- extendedWaitUntil:
+    visible: "Kontakt"
+    timeout: 10000
+- assertVisible: "O meni"
+- takeScreenshot: screenshots/03_serbian
+- tapOn: "Kontakt"
+- extendedWaitUntil:
+    visible: "Kopiraj imejl"
+    timeout: 15000
+- tapOn: "EN"
+- extendedWaitUntil:
+    visible: "Copy email"
+    timeout: 10000

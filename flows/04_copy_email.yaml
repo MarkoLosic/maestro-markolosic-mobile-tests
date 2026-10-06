@@ -1,0 +1,24 @@
+appId: ${BROWSER}
+name: Copy email button shows confirmation
+tags:
+  - contact
+env:
+  BROWSER: ${BROWSER || 'com.android.chrome'}
+  URL: ${URL || 'https://markolosic.github.io'}
+---
+- runFlow:
+    file: subflows/open_site.yaml
+    env:
+      BROWSER: ${BROWSER}
+      URL: ${URL}
+- tapOn: "Menu"
+- tapOn: "Contact"
+- extendedWaitUntil:
+    visible: "Copy email"
+    timeout: 15000
+- tapOn: "Copy email"
+- extendedWaitUntil:
+    visible: "Copied ✓"
+    timeout: 5000
+- assertVisible: "markolosic1993@gmail.com"
+- takeScreenshot: screenshots/04_copied

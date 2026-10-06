@@ -1,0 +1,25 @@
+appId: ${BROWSER}
+name: Mobile menu navigates to sections
+tags:
+  - navigation
+env:
+  BROWSER: ${BROWSER || 'com.android.chrome'}
+  URL: ${URL || 'https://markolosic.github.io'}
+---
+- runFlow:
+    file: subflows/open_site.yaml
+    env:
+      BROWSER: ${BROWSER}
+      URL: ${URL}
+- tapOn: "Menu"
+- tapOn: "Experience"
+- extendedWaitUntil:
+    visible: "Where I've shipped."
+    timeout: 10000
+- tapOn: "Menu"
+- tapOn: "Contact"
+- extendedWaitUntil:
+    visible: "Copy email"
+    timeout: 10000
+- assertVisible: "Send an email"
+- takeScreenshot: screenshots/02_contact

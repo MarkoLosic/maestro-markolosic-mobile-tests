@@ -1,0 +1,25 @@
+appId: ${BROWSER}
+name: Home page loads with hero content
+tags:
+  - smoke
+env:
+  BROWSER: ${BROWSER || 'com.android.chrome'}
+  URL: ${URL || 'https://markolosic.github.io'}
+---
+- runFlow:
+    file: subflows/open_site.yaml
+    env:
+      BROWSER: ${BROWSER}
+      URL: ${URL}
+# On phones the hero headline sits below the photo and terminal card
+- scrollUntilVisible:
+    element: "I make software"
+    direction: DOWN
+    timeout: 20000
+- assertVisible: "reliable"
+- scrollUntilVisible:
+    element: "Download CV"
+    direction: DOWN
+    timeout: 20000
+- assertVisible: "Let's talk"
+- takeScreenshot: screenshots/01_home
