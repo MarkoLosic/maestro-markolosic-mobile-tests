@@ -11,7 +11,8 @@ The flows drive a real mobile browser — **Chrome on Android** or **Safari on i
 | `02_mobile_menu_navigation.yaml` | Hamburger menu navigates to Experience and Contact |
 | `03_language_switch.yaml` | EN → SR → EN language toggle |
 | `04_copy_email.yaml` | "Copy email" button shows the "Copied ✓" confirmation |
-| `05_blog.yaml` | Blog page opens from the menu and lists posts |
+| `05_blog.yaml` | Blog page opens from the menu and lists multiple posts |
+| `06_blog_post_content.yaml` | A blog post opens and its title and content are verified |
 
 `flows/subflows/open_site.yaml` launches the browser, dismisses first-run dialogs and opens the site.
 

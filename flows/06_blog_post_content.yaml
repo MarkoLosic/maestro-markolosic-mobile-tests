@@ -1,0 +1,26 @@
+appId: ${BROWSER}
+name: Blog post displays expected content
+tags:
+  - blog
+env:
+  BROWSER: ${BROWSER || 'com.android.chrome'}
+  URL: ${URL || 'https://markolosic.github.io'}
+---
+- runFlow:
+    file: subflows/open_site.yaml
+    env:
+      BROWSER: ${BROWSER}
+      URL: ${URL}
+- tapOn: "Menu"
+- tapOn: "Blog"
+- extendedWaitUntil:
+    visible: "When Your Page Object Model Stops Scaling: Flow Model and Screenplay Pattern Compared"
+    timeout: 15000
+- tapOn: "When Your Page Object Model Stops Scaling: Flow Model and Screenplay Pattern Compared"
+- extendedWaitUntil:
+    visible: "Where Page Object Model stops helping"
+    timeout: 15000
+- assertVisible: "When Your Page Object Model Stops Scaling: Flow Model and Screenplay Pattern Compared"
+- assertVisible: "Page objects work until the suite grows."
+- assertVisible: "The middle ground: a flow layer"
+- takeScreenshot: screenshots/06_blog_post_content

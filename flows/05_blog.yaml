@@ -1,5 +1,5 @@
 appId: ${BROWSER}
-name: Blog page opens and lists posts
+name: Blog page lists posts
 tags:
   - blog
 env:
@@ -17,4 +17,6 @@ env:
     visible: "Notes from the test bench."
     timeout: 15000
 - assertVisible: "Filter by tag"
+- assertVisible: "When Your Page Object Model Stops Scaling: Flow Model and Screenplay Pattern Compared"
+- assertVisible: "Testing Across Daylight Saving Time: The Booking Bugs That Only Show Up Twice a Year"
 - takeScreenshot: screenshots/05_blog
