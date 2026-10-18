@@ -11,18 +11,19 @@ env:
     env:
       BROWSER: ${BROWSER}
       URL: ${URL}
-# On phones the hero headline sits below the photo and terminal card
-- repeat:
-    while:
-      notVisible: "Download CV"
-    times: 5
-    commands:
-      - swipe:
-          start: 50%, 70%
-          end: 50%, 35%
-- extendedWaitUntil:
-    visible: "Download CV"
+# On phones the hero headline sits below the photo and terminal card.
+# scrollUntilVisible stops as soon as the element appears, so it can't
+# overshoot the headline the way a fixed swipe loop does.
+- scrollUntilVisible:
+    element: ".*reliable.*"
+    direction: DOWN
+    timeout: 20000
+- scrollUntilVisible:
+    element: ".*Let.s talk.*"
+    direction: DOWN
     timeout: 10000
-- assertVisible: ".*Let.s talk.*"
-- assertVisible: ".*reliable.*"
+- scrollUntilVisible:
+    element: "Download CV"
+    direction: DOWN
+    timeout: 10000
 - takeScreenshot: screenshots/01_home

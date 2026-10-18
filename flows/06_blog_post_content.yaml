@@ -14,13 +14,27 @@ env:
 - tapOn: "Menu"
 - tapOn: "Blog"
 - extendedWaitUntil:
-    visible: "When Your Page Object Model Stops Scaling: Flow Model and Screenplay Pattern Compared"
+    visible: "Notes from the test bench."
     timeout: 15000
+# Posts start below the fold on phones, and new posts push older ones down
+- scrollUntilVisible:
+    element: "When Your Page Object Model Stops Scaling: Flow Model and Screenplay Pattern Compared"
+    direction: DOWN
+    timeout: 20000
 - tapOn: "When Your Page Object Model Stops Scaling: Flow Model and Screenplay Pattern Compared"
+# The title is also on the list page, so wait for the post URL to know we navigated
 - extendedWaitUntil:
-    visible: "Where Page Object Model stops helping"
+    visible: ".*pom-alternatives-flow-model-screenplay-pattern.*"
     timeout: 15000
 - assertVisible: "When Your Page Object Model Stops Scaling: Flow Model and Screenplay Pattern Compared"
-- assertVisible: "Page objects work until the suite grows."
-- assertVisible: "The middle ground: a flow layer"
+# The lead is one paragraph, so match the opening sentence as a prefix
+- assertVisible: "Page objects work until the suite grows.*"
+- scrollUntilVisible:
+    element: "Where Page Object Model stops helping"
+    direction: DOWN
+    timeout: 20000
+- scrollUntilVisible:
+    element: "The middle ground: a flow layer"
+    direction: DOWN
+    timeout: 20000
 - takeScreenshot: screenshots/06_blog_post_content

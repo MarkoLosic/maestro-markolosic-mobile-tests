@@ -17,6 +17,13 @@ env:
     visible: "Notes from the test bench."
     timeout: 15000
 - assertVisible: "Filter by tag"
-- assertVisible: "When Your Page Object Model Stops Scaling: Flow Model and Screenplay Pattern Compared"
-- assertVisible: "Testing Across Daylight Saving Time: The Booking Bugs That Only Show Up Twice a Year"
+# Posts start below the fold on phones, and new posts push older ones down
+- scrollUntilVisible:
+    element: "When Your Page Object Model Stops Scaling: Flow Model and Screenplay Pattern Compared"
+    direction: DOWN
+    timeout: 20000
+- scrollUntilVisible:
+    element: "Testing Across Daylight Saving Time: The Booking Bugs That Only Show Up Twice a Year"
+    direction: DOWN
+    timeout: 20000
 - takeScreenshot: screenshots/05_blog
