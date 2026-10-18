@@ -17,13 +17,14 @@ env:
     visible: "Notes from the test bench."
     timeout: 15000
 - assertVisible: "Filter by tag"
-# Posts start below the fold on phones, and new posts push older ones down
+# Posts start below a tall tag cloud on phones, and new posts push older ones
+# down; each scroll step takes ~3s on the CI emulator, so allow a long timeout
 - scrollUntilVisible:
     element: "When Your Page Object Model Stops Scaling: Flow Model and Screenplay Pattern Compared"
     direction: DOWN
-    timeout: 20000
+    timeout: 60000
 - scrollUntilVisible:
     element: "Testing Across Daylight Saving Time: The Booking Bugs That Only Show Up Twice a Year"
     direction: DOWN
-    timeout: 20000
+    timeout: 60000
 - takeScreenshot: screenshots/05_blog

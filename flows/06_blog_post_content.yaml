@@ -16,11 +16,13 @@ env:
 - extendedWaitUntil:
     visible: "Notes from the test bench."
     timeout: 15000
-# Posts start below the fold on phones, and new posts push older ones down
+# Posts start below a tall tag cloud on phones, and new posts push older ones
+# down; each scroll step takes ~3s on the CI emulator, so allow a long timeout
 - scrollUntilVisible:
     element: "When Your Page Object Model Stops Scaling: Flow Model and Screenplay Pattern Compared"
     direction: DOWN
-    timeout: 20000
+    timeout: 60000
+    centerElement: true
 - tapOn: "When Your Page Object Model Stops Scaling: Flow Model and Screenplay Pattern Compared"
 # The title is also on the list page, so wait for the post URL to know we navigated
 - extendedWaitUntil:
