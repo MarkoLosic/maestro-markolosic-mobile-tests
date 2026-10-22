@@ -1,0 +1,42 @@
+appId: ${BROWSER}
+name: "Blog post: mutation testing"
+tags:
+  - blog
+env:
+  BROWSER: ${BROWSER || 'com.android.chrome'}
+  URL: ${URL || 'https://markolosic.github.io'}
+---
+- runFlow:
+    file: subflows/open_site.yaml
+    env:
+      BROWSER: ${BROWSER}
+      URL: ${URL}
+- tapOn: "Menu"
+- tapOn: "Blog"
+- extendedWaitUntil:
+    visible: "Notes from the test bench."
+    timeout: 15000
+# Posts start below a tall tag cloud on phones, and new posts push older ones
+# down; each scroll step takes ~3s on the CI emulator, so allow a long timeout
+- scrollUntilVisible:
+    element: "Mutation Testing: How to Tell If Your Test Suite Actually Catches Bugs"
+    direction: DOWN
+    timeout: 60000
+    centerElement: true
+- tapOn: "Mutation Testing: How to Tell If Your Test Suite Actually Catches Bugs"
+# The title is also on the list page, so wait for the post URL to know we navigated
+- extendedWaitUntil:
+    visible: ".*mutation-testing-weak-assertions.*"
+    timeout: 15000
+- assertVisible: "Mutation Testing: How to Tell If Your Test Suite Actually Catches Bugs"
+# The lead is one paragraph, so match the opening sentence as a prefix
+- assertVisible: "Code coverage shows which lines ran.*"
+- scrollUntilVisible:
+    element: "How a mutation testing run actually works"
+    direction: DOWN
+    timeout: 20000
+- scrollUntilVisible:
+    element: "Mutation score, and what it does and doesn't tell you"
+    direction: DOWN
+    timeout: 20000
+- takeScreenshot: screenshots/08_blog_post_mutation_testing

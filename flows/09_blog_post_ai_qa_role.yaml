@@ -1,0 +1,42 @@
+appId: ${BROWSER}
+name: "Blog post: AI and the QA job description"
+tags:
+  - blog
+env:
+  BROWSER: ${BROWSER || 'com.android.chrome'}
+  URL: ${URL || 'https://markolosic.github.io'}
+---
+- runFlow:
+    file: subflows/open_site.yaml
+    env:
+      BROWSER: ${BROWSER}
+      URL: ${URL}
+- tapOn: "Menu"
+- tapOn: "Blog"
+- extendedWaitUntil:
+    visible: "Notes from the test bench."
+    timeout: 15000
+# Posts start below a tall tag cloud on phones, and new posts push older ones
+# down; each scroll step takes ~3s on the CI emulator, so allow a long timeout
+- scrollUntilVisible:
+    element: "AI Is Rewriting the QA Job Description, Not Deleting It"
+    direction: DOWN
+    timeout: 60000
+    centerElement: true
+- tapOn: "AI Is Rewriting the QA Job Description, Not Deleting It"
+# The title is also on the list page, so wait for the post URL to know we navigated
+- extendedWaitUntil:
+    visible: ".*ai-rewriting-qa-job-description.*"
+    timeout: 15000
+- assertVisible: "AI Is Rewriting the QA Job Description, Not Deleting It"
+# The lead is one paragraph, so match the opening sentence as a prefix
+- assertVisible: "AI already drafts test cases and triages failures.*"
+- scrollUntilVisible:
+    element: "What AI has actually taken off the plate"
+    direction: DOWN
+    timeout: 20000
+- scrollUntilVisible:
+    element: "The role is splitting, not shrinking"
+    direction: DOWN
+    timeout: 20000
+- takeScreenshot: screenshots/09_blog_post_ai_qa_role

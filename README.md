@@ -11,8 +11,11 @@ The flows drive a real mobile browser — **Chrome on Android** or **Safari on i
 | `02_mobile_menu_navigation.yaml` | Hamburger menu navigates to Experience and Contact |
 | `03_language_switch.yaml` | EN → SR → EN language toggle |
 | `04_copy_email.yaml` | "Copy email" button shows the "Copied ✓" confirmation |
-| `05_blog.yaml` | Blog page opens from the menu and lists multiple posts |
-| `06_blog_post_content.yaml` | A blog post opens and its title and content are verified |
+| `05_blog.yaml` | Blog page opens from the menu and lists the newest and older posts |
+| `06_blog_post_content.yaml` | The "Page Object Model" blog post opens and its title and content are verified |
+| `07_blog_post_ai_features.yaml` | "Testing AI Features That Don't Give the Same Answer Twice" post opens with its lead and sections |
+| `08_blog_post_mutation_testing.yaml` | "Mutation Testing" post opens with its lead and sections |
+| `09_blog_post_ai_qa_role.yaml` | "AI Is Rewriting the QA Job Description" post opens with its lead and sections |
 
 `flows/subflows/open_site.yaml` launches the browser, dismisses first-run dialogs and opens the site.
 

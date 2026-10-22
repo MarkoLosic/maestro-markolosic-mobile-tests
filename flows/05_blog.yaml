@@ -20,6 +20,18 @@ env:
 # Posts start below a tall tag cloud on phones, and new posts push older ones
 # down; each scroll step takes ~3s on the CI emulator, so allow a long timeout
 - scrollUntilVisible:
+    element: "Testing AI Features That Don't Give the Same Answer Twice"
+    direction: DOWN
+    timeout: 60000
+- scrollUntilVisible:
+    element: "Mutation Testing: How to Tell If Your Test Suite Actually Catches Bugs"
+    direction: DOWN
+    timeout: 60000
+- scrollUntilVisible:
+    element: "AI Is Rewriting the QA Job Description, Not Deleting It"
+    direction: DOWN
+    timeout: 60000
+- scrollUntilVisible:
     element: "When Your Page Object Model Stops Scaling: Flow Model and Screenplay Pattern Compared"
     direction: DOWN
     timeout: 60000

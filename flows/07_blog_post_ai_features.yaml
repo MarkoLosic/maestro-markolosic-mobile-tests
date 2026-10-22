@@ -1,0 +1,42 @@
+appId: ${BROWSER}
+name: "Blog post: testing non-deterministic AI features"
+tags:
+  - blog
+env:
+  BROWSER: ${BROWSER || 'com.android.chrome'}
+  URL: ${URL || 'https://markolosic.github.io'}
+---
+- runFlow:
+    file: subflows/open_site.yaml
+    env:
+      BROWSER: ${BROWSER}
+      URL: ${URL}
+- tapOn: "Menu"
+- tapOn: "Blog"
+- extendedWaitUntil:
+    visible: "Notes from the test bench."
+    timeout: 15000
+# Posts start below a tall tag cloud on phones, and new posts push older ones
+# down; each scroll step takes ~3s on the CI emulator, so allow a long timeout
+- scrollUntilVisible:
+    element: "Testing AI Features That Don't Give the Same Answer Twice"
+    direction: DOWN
+    timeout: 60000
+    centerElement: true
+- tapOn: "Testing AI Features That Don't Give the Same Answer Twice"
+# The title is also on the list page, so wait for the post URL to know we navigated
+- extendedWaitUntil:
+    visible: ".*testing-non-deterministic-ai-features.*"
+    timeout: 15000
+- assertVisible: "Testing AI Features That Don't Give the Same Answer Twice"
+# The lead is one paragraph, so match the opening sentence as a prefix
+- assertVisible: "Why assert-equal breaks on LLM-powered features.*"
+- scrollUntilVisible:
+    element: "Why assert-equal stops working"
+    direction: DOWN
+    timeout: 20000
+- scrollUntilVisible:
+    element: "What to check instead"
+    direction: DOWN
+    timeout: 20000
+- takeScreenshot: screenshots/07_blog_post_ai_features
