@@ -8,23 +8,33 @@ appId: ${BROWSER}
     commands:
       - launchApp:
           clearState: true
+      # Chrome first-run screens. On a slow emulator they can take >7s to show,
+      # and opening the link before they appear leaves Chrome on a blank page,
+      # so wait for each one instead of only checking whether it is visible
+      - extendedWaitUntil:
+          visible: "Use without an account"
+          timeout: 30000
+          optional: true
+      - runFlow:
+          when:
+            visible: "Use without an account"
+          commands:
+            - tapOn: "Use without an account"
+      - extendedWaitUntil:
+          visible: "No thanks"
+          timeout: 15000
+          optional: true
+      - runFlow:
+          when:
+            visible: "No thanks"
+          commands:
+            - tapOn: "No thanks"
 - runFlow:
     when:
       platform: iOS
     commands:
       - launchApp:
           stopApp: true
-# Chrome first-run screens (Android)
-- runFlow:
-    when:
-      visible: "Use without an account"
-    commands:
-      - tapOn: "Use without an account"
-- runFlow:
-    when:
-      visible: "No thanks"
-    commands:
-      - tapOn: "No thanks"
 - openLink: ${URL}
 # Safari "new menu" tip (iOS)
 - runFlow:
